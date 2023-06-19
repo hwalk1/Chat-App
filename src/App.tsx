@@ -9,30 +9,7 @@ export const supabase = createClient(
   process.env.REACT_APP_API_KEY || ''
 );
 
-interface Country {
-  id: number;
-  name: string;
-}
-
-type CountryList = Country[];
-
-interface CountryName {
-  name: string;
-}
-
 function App() {
-  // const [countries, setCountries] = useState<CountryList>([]);
-
-  // useEffect(() => {
-  //   getCountries();
-  // }, []);
-
-  // async function getCountries() {
-  //     const { data } = await supabase.from("countries").select();
-  //     if (data !== null) {
-  //         setCountries(data as CountryList);
-  //     }
-  //   }
   const router = createBrowserRouter([
     {
       path: '/',
