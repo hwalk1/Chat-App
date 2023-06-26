@@ -3,6 +3,7 @@ import { createClient } from '@supabase/supabase-js';
 import './App.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import Login from './pages/Login';
+import SignUp from './pages/Signup';
 
 export const supabase = createClient(
   process.env.REACT_APP_PROJECT_URL || '',
@@ -18,6 +19,10 @@ function App() {
     {
       path: '/login',
       element: <Login />,
+    },
+    {
+      path: '/signup',
+      element: <SignUp />,
     },
   ]);
 
