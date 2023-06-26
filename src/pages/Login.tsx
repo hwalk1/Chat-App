@@ -8,7 +8,7 @@ const Login = () => {
   const [password, setPassword] = useState<string>('');
 
   const submitToSupabase = async () => {
-    const { data, error } = await supabase.auth.signUp({
+    const { data, error } = await supabase.auth.signInWithPassword({
       email: email,
       password: password,
     });

@@ -9,7 +9,7 @@ const Home = () => {
       <button type="button" onClick={() => navigate('signup')}>
         Sign Up
       </button>
-      <button type="button" onClick={() => navigate('signup')}>
+      <button type="button" onClick={() => navigate('login')}>
         Login
       </button>
     </>
