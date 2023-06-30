@@ -1,23 +1,15 @@
 import React, { useState } from 'react';
 import TextInput from '../components/TextInput';
 import Button from '../components/Button';
-import { supabase } from '../App';
+import { signInToSupabase } from '../actions/supabase';
 
 const Login = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
-  const submitToSupabase = async () => {
-    const { data, error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password,
-    });
-    console.log('data', data);
-    console.log('error', error);
-  };
   const handleSubmit = (e: { preventDefault: () => void } | undefined) => {
     e?.preventDefault();
-    submitToSupabase();
+    signInToSupabase(email, password);
   };
 
   return (
