@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import TextInput from '../components/TextInput';
 import Button from '../components/Button';
 import { signInToSupabase } from '../actions/supabase';
+import '../styles/layout.scss';
 
 const Login = () => {
   const [email, setEmail] = useState<string>('');
@@ -13,12 +14,26 @@ const Login = () => {
   };
 
   return (
-    <form onSubmit={(e) => handleSubmit(e)}>
-      <h1>Login</h1>
-      <TextInput onChange={setEmail} type="email" value={email} />
-      <TextInput onChange={setPassword} type="password" value={password} />
-      <Button title="Login" />
-    </form>
+    <div className="screenWrap">
+      <div className="contentWrapper">
+        <div><h1>Login</h1></div>
+        
+
+        <div className="authForm">
+          <form onSubmit={(e) => handleSubmit(e)}>
+            <div className="formSection">
+            <TextInput onChange={setEmail} type="email" value={email} />
+            <TextInput
+              onChange={setPassword}
+              type="password"
+              value={password}
+            />
+            <Button title="Login" />
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
   );
 };
 
