@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './button.scss';
 
 interface IButton {
   title: string;
@@ -15,8 +16,9 @@ const Button = ({ title, to, onClick }: IButton) => {
       </Link>
     );
   }
+  // first test of importing color variables.
   return (
-    <button type="submit" onClick={onClick}>
+    <button type="submit" onClick={onClick} className='primaryButtonBackground'>
       {title}
     </button>
   );
