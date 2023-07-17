@@ -1,0 +1,25 @@
+.screenWrap {
+  margin: auto;
+  width: 50%;
+}
+.contentWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.authForm {
+  width: 100%;
+  padding: 10px 20px;
+}
+.formSection {
+    display: flex;
+    flex-direction: column;
+}
+
+// .center-screen {
+//     display: flex;
+//     justify-content: center;
+//     align-items: center;
+//     text-align: center;
+//     min-height: 100vh;
+//   }
