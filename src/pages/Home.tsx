@@ -5,9 +5,9 @@ const Home = () => {
   return (
     <>
       <h1>Hello World!</h1>
-      <Button title="Sign Up" to="/signup" />
+      <Button title="Sign Up" buttonType="primary" to="/signup" />
 
-      <Button title="Login" to="/login" />
+      <Button title="Login" buttonType="primary" to="/login" />
     </>
   );
 };

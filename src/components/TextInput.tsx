@@ -1,5 +1,6 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { get } from 'lodash';
+import clsx from 'clsx';
 
 // an input to handle two types if strings
 // one is email
@@ -9,8 +10,14 @@ interface ITextInput {
   type: string;
   onChange: Dispatch<SetStateAction<string>>;
   value: string;
+  customClass?: string;
 }
-const TextInput = ({ type, onChange, value }: ITextInput) => {
+
+const TextInput = ({ type, onChange, value, customClass }: ITextInput) => {
+  const classNames = () => {
+    return clsx(customClass);
+  };
+
   return (
     <input
       type={type}
@@ -19,6 +26,7 @@ const TextInput = ({ type, onChange, value }: ITextInput) => {
         onChange(value);
       }}
       value={value}
+      className={classNames()}
     />
   );
 };

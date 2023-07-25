@@ -7,7 +7,6 @@ const SignUp = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
 
-
   const handleSubmit = (e: { preventDefault: () => void } | undefined) => {
     e?.preventDefault();
     signUpToSupabase(email, password);
@@ -18,7 +17,7 @@ const SignUp = () => {
       <h1>Sign Up</h1>
       <TextInput onChange={setEmail} type="email" value={email} />
       <TextInput onChange={setPassword} type="password" value={password} />
-      <Button title="Sign Up" />
+      <Button title="Sign Up" buttonType="primary" />
     </form>
   );
 };
