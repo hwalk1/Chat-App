@@ -1,6 +1,7 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { get } from 'lodash';
 import clsx from 'clsx';
+import './textInput.scss';
 
 // an input to handle two types if strings
 // one is email
@@ -11,11 +12,22 @@ interface ITextInput {
   onChange: Dispatch<SetStateAction<string>>;
   value: string;
   customClass?: string;
+  placeHolder?: string;
 }
 
-const TextInput = ({ type, onChange, value, customClass }: ITextInput) => {
+// disabled state
+// isFocus state
+// isActive = has content, but not focused
+
+const TextInput = ({
+  type,
+  onChange,
+  value,
+  customClass,
+  placeHolder = 'Type here...',
+}: ITextInput) => {
   const classNames = () => {
-    return clsx(customClass);
+    return clsx('defaultInput', customClass);
   };
 
   return (
@@ -27,6 +39,7 @@ const TextInput = ({ type, onChange, value, customClass }: ITextInput) => {
       }}
       value={value}
       className={classNames()}
+      placeholder={placeHolder}
     />
   );
 };
