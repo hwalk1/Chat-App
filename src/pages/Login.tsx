@@ -10,25 +10,32 @@ const Login = () => {
 
   const handleSubmit = (e: { preventDefault: () => void } | undefined) => {
     e?.preventDefault();
-    signInToSupabase(email, password);
+    // signInToSupabase(email, password);
   };
 
   return (
     <div className="screenWrap">
       <div className="contentWrapper">
-        <div><h1>Login</h1></div>
-        
+        <div>
+          <h1>Login</h1>
+        </div>
 
         <div className="authForm">
           <form onSubmit={(e) => handleSubmit(e)}>
             <div className="formSection">
-            <TextInput onChange={setEmail} type="email" value={email} />
-            <TextInput
-              onChange={setPassword}
-              type="password"
-              value={password}
-            />
-            <Button title="Login" />
+              <TextInput
+                onChange={setEmail}
+                type="email"
+                value={email}
+                customClass="mb2"
+              />
+              <TextInput
+                onChange={setPassword}
+                type="password"
+                value={password}
+                customClass="mb2"
+              />
+              <Button title="Login" buttonType="primary" customClass="mb2" />
             </div>
           </form>
         </div>

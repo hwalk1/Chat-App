@@ -12,8 +12,14 @@
   padding: 10px 20px;
 }
 .formSection {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  width: 400px;
+  margin: auto;
+}
+
+.mb2 {
+  margin-bottom: 20px;
 }
 
 // .center-screen {

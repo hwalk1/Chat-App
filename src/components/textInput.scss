@@ -1,0 +1,13 @@
+@import '../styles/colors';
+
+.defaultInput {
+  height: 40px;
+  border-radius: 5px;
+  box-shadow: none;
+  padding: 0 10px;
+  outline: none;
+  border: 2px solid $neutral-color;
+  &:focus {
+    border: 2px solid $secondary-color;
+  }
+}
