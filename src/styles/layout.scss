@@ -1,6 +1,12 @@
-.screenWrap {
+.screenWrapper {
   margin: auto;
   width: 50%;
+}
+.centeredScreenWrapper {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .contentWrapper {
   display: flex;
@@ -21,11 +27,3 @@
 .mb2 {
   margin-bottom: 20px;
 }
-
-// .center-screen {
-//     display: flex;
-//     justify-content: center;
-//     align-items: center;
-//     text-align: center;
-//     min-height: 100vh;
-//   }
