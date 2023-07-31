@@ -29,6 +29,7 @@ const TextInput = ({
   const classNames = () => {
     return clsx('defaultInput', customClass);
   };
+  console.log('TEST value', value);
 
   return (
     <input
