@@ -14,7 +14,7 @@ const Login = () => {
   };
 
   return (
-    <div className="screenWrap">
+    <div className="centeredScreenWrapper">
       <div className="contentWrapper">
         <div>
           <h1>Login</h1>
@@ -28,12 +28,14 @@ const Login = () => {
                 type="email"
                 value={email}
                 customClass="mb2"
+                placeHolder="Enter email..."
               />
               <TextInput
                 onChange={setPassword}
                 type="password"
                 value={password}
                 customClass="mb2"
+                placeHolder="Enter password..."
               />
               <Button title="Login" buttonType="primary" customClass="mb2" />
             </div>

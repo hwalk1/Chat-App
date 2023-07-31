@@ -12,13 +12,6 @@ interface IButton {
 }
 
 const Button = ({ title, buttonType, customClass, to, onClick }: IButton) => {
-  if (to) {
-    return (
-      <Link to={to}>
-        <button type="submit">{title}</button>
-      </Link>
-    );
-  }
   const classNames = (type: string) => {
     return clsx('buttonDefault', customClass, {
       buttonPrimary: type === 'primary',
@@ -43,6 +36,15 @@ const Button = ({ title, buttonType, customClass, to, onClick }: IButton) => {
   // check click styling/highlight
   // text style
   // box shadow
+  if (to) {
+    return (
+      <Link to={to}>
+        <button type="submit" className={classNames(buttonType)}>
+          {title}
+        </button>
+      </Link>
+    );
+  }
   return (
     <button type="submit" onClick={onClick} className={classNames(buttonType)}>
       {title}

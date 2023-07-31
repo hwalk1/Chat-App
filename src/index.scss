@@ -6,6 +6,7 @@ body {
   font-family: 'Roboto', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
 }
 
 button {
@@ -19,4 +20,8 @@ code {
 
 * {
   box-sizing: border-box;
+}
+
+#root {
+  height: 100%;
 }
