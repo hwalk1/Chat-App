@@ -1,8 +1,4 @@
-import React, {
-  useState as useStateMock,
-  Dispatch,
-  SetStateAction,
-} from 'react';
+import React, { useState, Dispatch, SetStateAction } from 'react';
 import TextInput from './TextInput';
 import { render, fireEvent } from '@testing-library/react';
 
@@ -27,10 +23,11 @@ describe('Testing our text input', () => {
     ...jest.requireActual('react'),
     useState: jest.fn(),
   }));
-  const setState = jest.fn();
+  const setStateMock = jest.fn();
 
   beforeEach(() => {
-    useStateMock.mockImplementation((init: any) => [init, setState]);
+    const useStateMock: any = (useState: any) => [useState, setStateMock];
+    jest.spyOn(React, 'useState').mockImplementation(useStateMock);
   });
 
   it('My text input renders correctly', () => {
