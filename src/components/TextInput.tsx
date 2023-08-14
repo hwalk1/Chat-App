@@ -29,10 +29,10 @@ const TextInput = ({
   const classNames = () => {
     return clsx('defaultInput', customClass);
   };
-  console.log('TEST value', value);
 
   return (
     <input
+      data-testId="test-base_input"
       type={type}
       onChange={(e) => {
         const value = get(e, 'target.value', '');
