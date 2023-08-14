@@ -32,6 +32,7 @@ const TextInput = ({
 
   return (
     <input
+      data-testId="test-base_input"
       type={type}
       onChange={(e) => {
         const value = get(e, 'target.value', '');
