@@ -3,16 +3,42 @@ import TextInput from '../components/TextInput';
 import Button from '../components/Button';
 import { signUpToSupabase } from '../actions/supabase';
 import '../styles/layout.scss';
+import { isEmpty, get } from 'lodash';
 
 const SignUp = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [errMessage, setErrMessage] = useState<string>('');
 
-  const handleSubmit = (e: { preventDefault: () => void } | undefined) => {
+  const handleSubmit = async (
+    e: { preventDefault: () => void } | undefined
+  ) => {
     e?.preventDefault();
-    signUpToSupabase(email, password);
+    setIsLoading(true);
+    await signUpToSupabase(email, password).then(({ data, error }) => {
+      if (!isEmpty(error)) {
+        const errMessage = get(error, 'message', 'An error has occurred');
+        setErrMessage(errMessage);
+      }
+      setIsLoading(false);
+    });
   };
 
+  // We need a loading state
+  if (isLoading) {
+    // need to find a loading animation that is centred to the screen
+    // this can become it's own reusable component
+    return (
+      <div>
+        <h1>Loading</h1>
+      </div>
+    );
+  }
+  // success
+  // a message, verfiy your account via your email
+  // failure
+  // an error has occurred. Display error message to user.
   return (
     <div className="centeredScreenWrapper">
       <div className="contentWrapper">
@@ -41,6 +67,8 @@ const SignUp = () => {
             </div>
           </form>
         </div>
+        {/* error message banner */}
+        <p>{errMessage}</p>
       </div>
     </div>
   );
