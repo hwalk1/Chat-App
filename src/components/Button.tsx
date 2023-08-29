@@ -29,8 +29,8 @@ const Button = ({ title, buttonType, customClass, to, onClick }: IButton) => {
   // box shadow
   if (to) {
     return (
-      <Link to={to}>
-        <button type="submit" className={classNames(buttonType)}>
+      <Link style={{ width: '100%' }} to={to}>
+        <button style={{ width: '100%' }} className={classNames(buttonType)}>
           {title}
         </button>
       </Link>

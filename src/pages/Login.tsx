@@ -38,6 +38,7 @@ const Login = () => {
                 placeHolder="Enter password..."
               />
               <Button title="Login" buttonType="primary" customClass="mb2" />
+              <Button title="Signup" buttonType="secondary" to="/signup" />
             </div>
           </form>
         </div>
