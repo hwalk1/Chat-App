@@ -9,7 +9,7 @@ import { isEmpty, get } from 'lodash';
 const SignUp = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errMessage, setErrMessage] = useState<string>('');
 
   const handleSubmit = async (
