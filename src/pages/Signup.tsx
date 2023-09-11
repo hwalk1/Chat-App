@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TextInput from '../components/TextInput';
 import Button from '../components/Button';
+import Loader from '../components/Loading';
 import { signUpToSupabase } from '../actions/supabase';
 import '../styles/layout.scss';
 import { isEmpty, get } from 'lodash';
@@ -8,7 +9,7 @@ import { isEmpty, get } from 'lodash';
 const SignUp = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [errMessage, setErrMessage] = useState<string>('');
 
   const handleSubmit = async (
@@ -29,11 +30,7 @@ const SignUp = () => {
   if (isLoading) {
     // need to find a loading animation that is centred to the screen
     // this can become it's own reusable component
-    return (
-      <div>
-        <h1>Loading</h1>
-      </div>
-    );
+    return <Loader />;
   }
   // success
   // a message, verfiy your account via your email
@@ -68,7 +65,7 @@ const SignUp = () => {
           </form>
         </div>
         {/* error message banner */}
-        <p>{errMessage}</p>
+        {errMessage && <p>{errMessage}</p>}
       </div>
     </div>
   );
