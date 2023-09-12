@@ -1,18 +1,31 @@
 import React, { useState } from 'react';
 import TextInput from '../components/TextInput';
 import Button from '../components/Button';
+import Loader from '../components/Loading';
+
 import { signInToSupabase } from '../actions/supabase';
 import '../styles/layout.scss';
 
 const Login = () => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  // const [errMessage, setErrMessage] = useState<string>('');
 
-  const handleSubmit = (e: { preventDefault: () => void } | undefined) => {
+  const handleSubmit = async (
+    e: { preventDefault: () => void } | undefined
+  ) => {
     e?.preventDefault();
-    // signInToSupabase(email, password);
+    await signInToSupabase(email, password).then(({ data, error }) => {
+      console.log('data', data);
+      console.log('error', error);
+    });
   };
-
+  if (isLoading) {
+    // need to find a loading animation that is centred to the screen
+    // this can become it's own reusable component
+    return <Loader />;
+  }
   return (
     <div className="centeredScreenWrapper">
       <div className="contentWrapper">

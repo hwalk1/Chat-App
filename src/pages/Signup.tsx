@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import TextInput from '../components/TextInput';
 import Button from '../components/Button';
+import Loader from '../components/Loading';
 import { signUpToSupabase } from '../actions/supabase';
 import '../styles/layout.scss';
 import { isEmpty, get } from 'lodash';
@@ -10,6 +11,8 @@ const SignUp = () => {
   const [password, setPassword] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errMessage, setErrMessage] = useState<string>('');
+  const [verifyState, setVerifyState] = useState<boolean>(false);
+  const [verifyEmail, setVerifyEmail] = useState<string>('');
 
   const handleSubmit = async (
     e: { preventDefault: () => void } | undefined
@@ -22,6 +25,17 @@ const SignUp = () => {
         setErrMessage(errMessage);
       }
       setIsLoading(false);
+
+      if (isEmpty(error) && !isEmpty(data)) {
+        //Get UserId
+        const userId = get(data, 'user.id', '');
+        const userEmail = get(data, 'user.email', '');
+        if (userId) {
+          setVerifyState(true);
+          setVerifyEmail(userEmail);
+        }
+        //Get Email
+      }
     });
   };
 
@@ -29,12 +43,20 @@ const SignUp = () => {
   if (isLoading) {
     // need to find a loading animation that is centred to the screen
     // this can become it's own reusable component
+    return <Loader />;
+  }
+
+  if (verifyState) {
     return (
-      <div>
-        <h1>Loading</h1>
+      <div className="centeredScreenWrapper">
+        <div className="contentWrapper">
+          <h1>Thanks for Signing Up</h1>
+          <p>{`To login, first verify your email at ${verifyEmail}`}</p>
+        </div>
       </div>
     );
   }
+
   // success
   // a message, verfiy your account via your email
   // failure
@@ -68,7 +90,7 @@ const SignUp = () => {
           </form>
         </div>
         {/* error message banner */}
-        <p>{errMessage}</p>
+        {errMessage && <p>{errMessage}</p>}
       </div>
     </div>
   );
