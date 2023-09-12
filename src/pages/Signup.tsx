@@ -11,6 +11,8 @@ const SignUp = () => {
   const [password, setPassword] = useState<string>('');
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [errMessage, setErrMessage] = useState<string>('');
+  const [verifyState, setVerifyState] = useState<boolean>(false);
+  const [verifyEmail, setVerifyEmail] = useState<string>('');
 
   const handleSubmit = async (
     e: { preventDefault: () => void } | undefined
@@ -23,6 +25,17 @@ const SignUp = () => {
         setErrMessage(errMessage);
       }
       setIsLoading(false);
+
+      if (isEmpty(error) && !isEmpty(data)) {
+        //Get UserId
+        const userId = get(data, 'user.id', '');
+        const userEmail = get(data, 'user.email', '');
+        if (userId) {
+          setVerifyState(true);
+          setVerifyEmail(userEmail);
+        }
+        //Get Email
+      }
     });
   };
 
@@ -32,6 +45,18 @@ const SignUp = () => {
     // this can become it's own reusable component
     return <Loader />;
   }
+
+  if (verifyState) {
+    return (
+      <div className="centeredScreenWrapper">
+        <div className="contentWrapper">
+          <h1>Thanks for Signing Up</h1>
+          <p>{`To login, first verify your email at ${verifyEmail}`}</p>
+        </div>
+      </div>
+    );
+  }
+
   // success
   // a message, verfiy your account via your email
   // failure
