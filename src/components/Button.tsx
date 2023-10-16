@@ -9,9 +9,17 @@ interface IButton {
   customClass?: string;
   to?: string;
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  isDisabled?: boolean;
 }
 
-const Button = ({ title, buttonType, customClass, to, onClick }: IButton) => {
+const Button = ({
+  title,
+  buttonType,
+  customClass,
+  to,
+  onClick,
+  isDisabled,
+}: IButton) => {
   const classNames = (type: string) => {
     return clsx('buttonDefault', customClass, {
       buttonPrimary: type === 'primary',
@@ -29,15 +37,26 @@ const Button = ({ title, buttonType, customClass, to, onClick }: IButton) => {
   // box shadow
   if (to) {
     return (
-      <Link style={{ width: '100%' }} to={to}>
-        <button style={{ width: '100%' }} className={classNames(buttonType)}>
+      <Link data-testid="test-nav_link" style={{ width: '100%' }} to={to}>
+        <button
+          data-testid="test-nav_button"
+          style={{ width: '100%' }}
+          className={classNames(buttonType)}
+          disabled={isDisabled}
+        >
           {title}
         </button>
       </Link>
     );
   }
   return (
-    <button type="submit" onClick={onClick} className={classNames(buttonType)}>
+    <button
+      data-testid="test-base_button"
+      type="submit"
+      onClick={onClick}
+      className={classNames(buttonType)}
+      disabled={isDisabled}
+    >
       {title}
     </button>
   );
